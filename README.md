@@ -1,13 +1,14 @@
 # CodeClinic_C-Sharp
  
- > This repo is for learning and trying things out. The project ideas originate from the LinkedIn Learning Course: Code Clinic: C#
+ > This repo is for learning and trying things out. The project ideas originate from the LinkedIn Learning Course: "Code Clinic: C#"
 
  # Project 1: Barometer
  ## Tasks
  * Input of barometric data from datasoure
     * Example textfile for first implementation
     * Later data from an API or something
-* Create a function that gets a start date, end date and the data passed in and returns the coordinates for plotting
+* Create a function that gets a start date, end date and the data passed in and returns cartesian coordinates
+* Create a function that calculates the slope of barometric pressure of the given timerange 
 * Plot the graph with a technologie of your choice
     * WPF
     * Xamarin.Forms

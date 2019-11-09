@@ -14,7 +14,7 @@ namespace Barometer_Test
                                 "2012_01_01 00:02:14\t34.3\t30.5\t26.9\t74.2\t346.4\t11\t3.6\n" +
                                 "2012_01_01 00:08:29\t34.1\t30.5\t26.5\t73.6\t349\t12\t8";
 
-            TextReader sr = new StringReader(testData);
+            StringReader sr = new StringReader(testData);
             BarometricDataInput bdi = new BarometricDataInput();
 
             var data = bdi.ParseData(sr);
