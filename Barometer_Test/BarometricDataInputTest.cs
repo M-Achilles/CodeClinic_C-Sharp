@@ -17,8 +17,8 @@ namespace Barometer_Test
             StringReader sr = new StringReader(testData);
             BarometricDataInput bdi = new BarometricDataInput();
 
-            var data = bdi.ParseData(sr);
-            var result = data.DataRows[0].DataSet.WindSpeed;
+            bdi.ParseData();
+            var result = bdi.Data.DataRows[0].DataSet.WindSpeed;
 
             Assert.AreEqual(3.6, result, 0.1);
         }

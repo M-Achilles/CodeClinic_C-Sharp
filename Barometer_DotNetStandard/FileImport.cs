@@ -6,13 +6,17 @@ namespace Barometer
 {
     public static class FileImport
     {
-        public static StringReader ImportFile(string path)
+        public static string ImportFile(string path)
         {
             string textFromFile = File.ReadAllText(path);
 
             if (path.EndsWith(".txt"))
             {
-                return new StringReader(textFromFile);
+                StringReader sr = new StringReader(textFromFile);
+                using (sr)
+                {
+                    return sr.ReadToEnd();
+                }
             }
             else
             {
@@ -20,16 +24,16 @@ namespace Barometer
             }
         }
 
-        public static List<StringReader> ImportFolder(string path)
+        public static string ImportFolder(string path)
         {
-            List<StringReader> srFilesInDir = new List<StringReader>();
             string[] filesInDir = Directory.GetFiles(path, "*.txt");
+            string returnString = string.Empty;
 
             foreach (var file in filesInDir)
             {
-                srFilesInDir.Add(ImportFile(file));
+                string.Concat(returnString,ImportFile(file));
             }
-            return srFilesInDir;
+            return returnString;
         }
     }
 }
