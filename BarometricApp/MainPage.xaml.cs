@@ -16,20 +16,43 @@ using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 using Windows.Storage.Pickers;
 using Windows.Storage;
+using System.ComponentModel;
+using Windows.UI.Notifications;
 
 namespace BarometricApp
 {
     public sealed partial class MainPage : Page
     {
-        public string FileContent { get; set; }
+        string FileContent { get; set; }
+        List<Coordinate> Coordinates = new List<Coordinate>();
+
         public MainPage()
         {
             this.InitializeComponent();
         }
 
-        void OnClick_GenerateChart(object sender, RoutedEventArgs e)
+        void OnClick_GenerateChartAndForecast(object sender, RoutedEventArgs e)
         {
             CalculateChartData();
+            var forecast = CalculateForcast();
+            ShowToastNotification("Forecast", forecast);
+
+        }
+
+        private void ShowToastNotification(string title, string stringContent)
+        {
+            ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
+            Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+            Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
+            toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(title));
+            toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(stringContent));
+            Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
+            Windows.Data.Xml.Dom.XmlElement audio = toastXml.CreateElement("audio");
+            audio.SetAttribute("src", "ms-winsoundevent:Notification.SMS");
+
+            ToastNotification toast = new ToastNotification(toastXml);
+            toast.ExpirationTime = DateTime.Now.AddSeconds(4);
+            ToastNotifier.Show(toast);
         }
 
         async void OnClick_ChooseFile(object sender, RoutedEventArgs e)
@@ -101,8 +124,27 @@ namespace BarometricApp
             var end = new DateTime(2012, 01, 03, 00, 02, 14);
 
             bc.CalculateCoordinates(start, end, bdi.Data);
+            Coordinates = bc.Coordinates;
 
-            (lineChart.Series[0] as LineSeries).ItemsSource = bc.Coordinates;
+            (lineChart.Series[0] as LineSeries).ItemsSource = Coordinates;
+        }
+
+        string CalculateForcast()
+        {
+            var slope = DataAnalyzer.CalculateSlope((Coordinates[0].X, Coordinates[0].Y), (Coordinates[Coordinates.Count - 1].X, Coordinates[Coordinates.Count - 1].Y));
+
+            if (slope > 0)
+            {
+                return "Looks like good weather is comming.";
+            }
+            else if (slope < 0)
+            {
+                return "Looks like bad weather is comming.";
+            }
+            else
+            {
+                return "Maybe good, maybe bad.";
+            }
         }
     }
 }

@@ -13,7 +13,7 @@
         <TextBlock HorizontalAlignment="Center" Margin="0,85,0,0" Text="Barometer" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold" FontSize="48"/>
         <Button x:Name="ChooseFileBtn" Click="OnClick_ChooseFile" ClickMode="Release" Content="Choose File" HorizontalAlignment="Left" Margin="99,230,0,0" VerticalAlignment="Top" Width="121"/>
         <Button x:Name="ChooseFolderBtn" Click="OnClick_ChooseFolder" ClickMode="Release" Content="Choose Folder" HorizontalAlignment="Left" Margin="99,285,0,0" VerticalAlignment="Top" Width="121"/>
-        <Button x:Name="GenerateChartBtn" Click="OnClick_GenerateChart" ClickMode="Release" Content="Generate Chart" HorizontalAlignment="Left" Margin="99,337,0,0" VerticalAlignment="Top" Width="121"/>
+        <Button x:Name="GenerateChartAndForecastBtn" Click="OnClick_GenerateChartAndForecast" ClickMode="Release" Content="Generate Chart and Forecast" HorizontalAlignment="Left" Margin="99,337,0,0" VerticalAlignment="Top" Width="121"/>
         <Charting:Chart x:Name="lineChart" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top" 

@@ -10,15 +10,9 @@ namespace Barometer
     {
         public Data<BarometricData> Data { get; set; }
 
-        /// <summary>
-        /// The method parses and returns barometric data from a given reader, row by row
-        /// </summary>
-        /// <param name="sr"></param>
-        /// <returns></returns>
         public override void ParseData()
         {
             Data = new Data<BarometricData>();
-            //Data.DataRows = new List<DataRow<BarometricData>>();
             List<DataRow<BarometricData>> rows = new List<DataRow<BarometricData>>();
             using (stringReader)
             {
@@ -43,9 +37,9 @@ namespace Barometer
 
                         rows.Add(dataRow);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        //TODO: Handel unexpected row format
+                        throw new Exception(ex.Message);
                     }
                 }
             }

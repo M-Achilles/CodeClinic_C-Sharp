@@ -13,7 +13,6 @@ namespace Barometer
         public override void ParseData()
         {
             Data = new Data<BarometricData>();
-            //Data.DataRows = new List<DataRow<BarometricData>>();
             List<DataRow<BarometricData>> rows = new List<DataRow<BarometricData>>();
             using (stringReader)
             {
