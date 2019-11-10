@@ -17,11 +17,11 @@
         <Charting:Chart x:Name="lineChart" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Top" 
-                Margin="339,246,0,0" Height="272" Width="459" >
-            <Charting:LineSeries Margin="0" 
+                Margin="264,230,0,0" Height="729" Width="1195" >
+            <Charting:LineSeries Margin="0,-31,8,-4" 
                 IndependentValuePath="X" 
                 DependentValuePath="Y" 
-                IsSelectionEnabled="True"/>
+                IsSelectionEnabled="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Charting:Chart>
     </Grid>
 </Page>

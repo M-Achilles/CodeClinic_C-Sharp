@@ -17,6 +17,9 @@ namespace Barometer
         /// <returns></returns>
         public override void ParseData()
         {
+            Data = new Data<BarometricData>();
+            //Data.DataRows = new List<DataRow<BarometricData>>();
+            List<DataRow<BarometricData>> rows = new List<DataRow<BarometricData>>();
             using (stringReader)
             {
                 string line = stringReader.ReadLine();
@@ -38,7 +41,7 @@ namespace Barometer
                         dataRow.DataSet.WindGust = int.Parse(row[6]);
                         dataRow.DataSet.WindSpeed = float.Parse(row[7], CultureInfo.InvariantCulture);
 
-                        Data.DataRows.Add(dataRow);
+                        rows.Add(dataRow);
                     }
                     catch (Exception)
                     {
@@ -46,6 +49,7 @@ namespace Barometer
                     }
                 }
             }
+            Data.DataRows = rows;
         }
     }
 }

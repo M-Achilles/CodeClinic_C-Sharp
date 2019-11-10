@@ -8,19 +8,17 @@ namespace Barometer
     {
         public static string ImportFile(string path)
         {
-            string textFromFile = File.ReadAllText(path);
-
-            if (path.EndsWith(".txt"))
+            try
             {
-                StringReader sr = new StringReader(textFromFile);
-                using (sr)
+                using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+                using (StreamReader reader = new StreamReader(stream))
                 {
-                    return sr.ReadToEnd();
+                    return reader.ReadToEnd();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                throw new NotSupportedException("File is not of expected type. Please only use txt files");
+                throw new Exception(ex.Message);
             }
         }
 

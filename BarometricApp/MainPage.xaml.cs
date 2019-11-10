@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
+using Windows.Storage.Pickers;
+using Windows.Storage;
 
 namespace BarometricApp
 {
@@ -27,36 +29,65 @@ namespace BarometricApp
 
         void OnClick_GenerateChart(object sender, RoutedEventArgs e)
         {
-            GetChartData();
+            CalculateChartData();
         }
 
         async void OnClick_ChooseFile(object sender, RoutedEventArgs e)
         {
-            var picker = new Windows.Storage.Pickers.FileOpenPicker();
-            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
-            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
-            picker.FileTypeFilter.Add(".txt");
+            var filePicker = new FileOpenPicker();
+            filePicker.ViewMode = PickerViewMode.Thumbnail;
+            filePicker.SuggestedStartLocation = PickerLocationId.Desktop;
+            filePicker.FileTypeFilter.Add(".txt");
 
-            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+            StorageFile file = await filePicker.PickSingleFileAsync();
+
             if (file != null)
             {
-                FileContent = FileImport.ImportFile(file.Path);
+                var stream = await file.OpenAsync(FileAccessMode.Read);
+                using (StreamReader reader = new StreamReader(stream.AsStream()))
+                {
+                    FileContent = reader.ReadToEnd();
+                }
             }
         }
         async void OnClick_ChooseFolder(object sender, RoutedEventArgs e)
         {
-            var picker = new Windows.Storage.Pickers.FolderPicker();
-            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
-            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
-            picker.FileTypeFilter.Add(".txt");
-            var files = await picker.PickSingleFolderAsync();
-            if (files != null)
+            var folderPicker = new FolderPicker();
+            folderPicker.ViewMode = PickerViewMode.Thumbnail;
+            folderPicker.SuggestedStartLocation = PickerLocationId.Desktop;
+            folderPicker.FileTypeFilter.Add(".txt");
+
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+
+            if (folder != null)
             {
-                FileContent = FileImport.ImportFile(files.Path);
+                string folderContent = string.Empty;
+
+                Windows.Storage.AccessCache.StorageApplicationPermissions.
+                FutureAccessList.AddOrReplace("PickedFolderToken", folder);
+
+                var files = await folder.GetFilesAsync();
+
+                foreach (var file in files)
+                {
+                    var stream = await file.OpenAsync(FileAccessMode.Read);
+                    using (StreamReader reader = new StreamReader(stream.AsStream()))
+                    {
+                        if (folderContent == string.Empty)
+                        {
+                            folderContent = reader.ReadToEnd();
+                        }
+                        else
+                        {
+                            string.Concat(folderContent, reader.ReadToEnd());
+                        }
+                    }
+                }
+                FileContent = folderContent;
             }
         }
 
-        void calculateChartData()
+        void CalculateChartData()
         {
             BarometricDataInput bdi = new BarometricDataInput();
             bdi.InputData = FileContent;
@@ -66,40 +97,12 @@ namespace BarometricApp
             BarometricCoordinates bc = new BarometricCoordinates();
 
             //Test purpose
-            var start = new DateTime(2010, 01, 01, 00, 02, 14);
-            var end = new DateTime(2019, 01, 01, 00, 02, 14);
+            var start = new DateTime(2012, 01, 01, 00, 02, 14);
+            var end = new DateTime(2012, 01, 03, 00, 02, 14);
 
             bc.CalculateCoordinates(start, end, bdi.Data);
 
             (lineChart.Series[0] as LineSeries).ItemsSource = bc.Coordinates;
         }
-
-        void GetChartData()
-        {
-            List<Coordinates> coordinates = new List<Coordinates>();
-            coordinates.Add(new Coordinates()
-            {
-                X = "Test1",
-                Y = 1
-            });
-            coordinates.Add(new Coordinates()
-            {
-                X = "Test2",
-                Y = 5
-            });
-            coordinates.Add(new Coordinates()
-            {
-                X = "Test3",
-                Y = 10
-            });
-
-            (lineChart.Series[0] as LineSeries).ItemsSource = coordinates;
-        }
-    }
-
-    public class Coordinates
-    {
-        public string X { get; set; }
-        public int Y { get; set; }
     }
 }
