@@ -10,9 +10,23 @@
 * Create a function that gets a start date, end date and the data passed in and returns cartesian coordinates
 * Create a function that calculates the slope of barometric pressure of the given timerange 
 * Plot the graph with a technologie of your choice
-    * WPF
+    * UWP
     * Xamarin.Forms
     * ASP.&#8203;net
+
+# Project 2: Where Am I?
+## Task
+* Find the geolocation of the machine, currently running your code
+    * Show
+        * Latitude
+        * Longitude
+        * Location on Map
+        * Accuracy as circle (e.g.)
+* Use a technologie of your choice
+    * UWP
+    * Xamarin.Forms
+    * ASP.&#8203;net
+        * Show location of client not server
 
 
  
