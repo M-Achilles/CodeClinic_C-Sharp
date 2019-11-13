@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace BarometricApp
@@ -37,7 +27,7 @@ namespace BarometricApp
         /// werden z. B. verwendet, wenn die Anwendung gestartet wird, um eine bestimmte Datei zu öffnen.
         /// </summary>
         /// <param name="e">Details über Startanforderung und -prozess.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -50,7 +40,7 @@ namespace BarometricApp
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Zustand von zuvor angehaltener Anwendung laden
                 }
@@ -59,14 +49,14 @@ namespace BarometricApp
                 Window.Current.Content = rootFrame;
             }
 
-            if (e.PrelaunchActivated == false)
+            if (!args.PrelaunchActivated)
             {
                 if (rootFrame.Content == null)
                 {
                     // Wenn der Navigationsstapel nicht wiederhergestellt wird, zur ersten Seite navigieren
                     // und die neue Seite konfigurieren, indem die erforderlichen Informationen als Navigationsparameter
                     // übergeben werden
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(MainPage), args.Arguments);
                 }
                 // Sicherstellen, dass das aktuelle Fenster aktiv ist
                 Window.Current.Activate();
