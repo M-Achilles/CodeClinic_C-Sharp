@@ -23,10 +23,12 @@ namespace Barometer
                     {
                         var row = line.Split('\t');
 
-                        DataRow<BarometricData> dataRow = new DataRow<BarometricData>();
-                        dataRow.DataSet = new BarometricData();
+                        DataRow<BarometricData> dataRow = new DataRow<BarometricData>
+                        {
+                            DataSet = new BarometricData(),
 
-                        dataRow.TimeStamp = DateTime.ParseExact(row[0], "yyyy_MM_dd HH:mm:ss", null);
+                            TimeStamp = DateTime.ParseExact(row[0], "yyyy_MM_dd HH:mm:ss", null)
+                        };
                         dataRow.DataSet.AirTemp = float.Parse(row[1], CultureInfo.InvariantCulture);
                         dataRow.DataSet.BarometricPress = float.Parse(row[2], CultureInfo.InvariantCulture);
                         dataRow.DataSet.DewPoint = float.Parse(row[3], CultureInfo.InvariantCulture);

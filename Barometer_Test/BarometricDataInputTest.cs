@@ -14,8 +14,10 @@ namespace Barometer_Test
                                 "2012_01_01 00:02:14\t34.3\t30.5\t26.9\t74.2\t346.4\t11\t3.6\n" +
                                 "2012_01_01 00:08:29\t34.1\t30.5\t26.5\t73.6\t349\t12\t8";
 
-            BarometricDataInput bdi = new BarometricDataInput();
-            bdi.InputData = testData;
+            BarometricDataInput bdi = new BarometricDataInput
+            {
+                InputData = testData
+            };
             bdi.InitializeStringReader();
             bdi.ParseData();
 
@@ -27,9 +29,10 @@ namespace Barometer_Test
         [TestMethod]
         public void InputData()
         {
-            BarometricDataInput bdi = new BarometricDataInput();
-
-            bdi.InputData = "TestString1 ";
+            BarometricDataInput bdi = new BarometricDataInput
+            {
+                InputData = "TestString1 "
+            };
 
             Assert.AreEqual(bdi.InputData, "TestString1 ");
 

@@ -50,16 +50,20 @@ namespace BarometricApp
             Windows.Data.Xml.Dom.XmlElement audio = toastXml.CreateElement("audio");
             audio.SetAttribute("src", "ms-winsoundevent:Notification.SMS");
 
-            ToastNotification toast = new ToastNotification(toastXml);
-            toast.ExpirationTime = DateTime.Now.AddSeconds(4);
+            ToastNotification toast = new ToastNotification(toastXml)
+            {
+                ExpirationTime = DateTime.Now.AddSeconds(4)
+            };
             ToastNotifier.Show(toast);
         }
 
         async void OnClick_ChooseFile(object sender, RoutedEventArgs e)
         {
-            var filePicker = new FileOpenPicker();
-            filePicker.ViewMode = PickerViewMode.Thumbnail;
-            filePicker.SuggestedStartLocation = PickerLocationId.Desktop;
+            var filePicker = new FileOpenPicker
+            {
+                ViewMode = PickerViewMode.Thumbnail,
+                SuggestedStartLocation = PickerLocationId.Desktop
+            };
             filePicker.FileTypeFilter.Add(".txt");
 
             StorageFile file = await filePicker.PickSingleFileAsync();
@@ -75,9 +79,11 @@ namespace BarometricApp
         }
         async void OnClick_ChooseFolder(object sender, RoutedEventArgs e)
         {
-            var folderPicker = new FolderPicker();
-            folderPicker.ViewMode = PickerViewMode.Thumbnail;
-            folderPicker.SuggestedStartLocation = PickerLocationId.Desktop;
+            var folderPicker = new FolderPicker
+            {
+                ViewMode = PickerViewMode.Thumbnail,
+                SuggestedStartLocation = PickerLocationId.Desktop
+            };
             folderPicker.FileTypeFilter.Add(".txt");
 
             StorageFolder folder = await folderPicker.PickSingleFolderAsync();
@@ -112,8 +118,10 @@ namespace BarometricApp
 
         void CalculateChartData()
         {
-            BarometricDataInput bdi = new BarometricDataInput();
-            bdi.InputData = FileContent;
+            BarometricDataInput bdi = new BarometricDataInput
+            {
+                InputData = FileContent
+            };
             bdi.InitializeStringReader();
             bdi.ParseData();
 
