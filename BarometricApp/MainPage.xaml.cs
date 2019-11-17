@@ -2,22 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
-using Windows.Storage.Pickers;
-using Windows.Storage;
-using System.ComponentModel;
-using Windows.UI.Notifications;
 
 namespace BarometricApp
 {
@@ -46,7 +36,6 @@ namespace BarometricApp
             Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
             toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(title));
             toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(stringContent));
-            Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
             Windows.Data.Xml.Dom.XmlElement audio = toastXml.CreateElement("audio");
             audio.SetAttribute("src", "ms-winsoundevent:Notification.SMS");
 
@@ -108,7 +97,7 @@ namespace BarometricApp
                         }
                         else
                         {
-                            string.Concat(folderContent, reader.ReadToEnd());
+                            folderContent = string.Concat(folderContent, reader.ReadToEnd());
                         }
                     }
                 }
