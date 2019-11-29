@@ -4,11 +4,19 @@
              xmlns:local="clr-namespace:WhereAmI"
              x:Class="WhereAmI.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
+    <StackLayout Spacing="10">
+        <Label Text=""
+           FontSize="60"
            HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+           VerticalOptions="Start" />
+        <Label Text="Find your position"
+           FontSize="30"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+        <Button Text="Where Am I?"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Clicked="WhereAmI" />
     </StackLayout>
 
 </ContentPage>

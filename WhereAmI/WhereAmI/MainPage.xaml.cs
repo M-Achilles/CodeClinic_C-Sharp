@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace WhereAmI
@@ -12,6 +8,11 @@ namespace WhereAmI
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        async void WhereAmI(object sender, EventArgs args)
+        {
+                await Navigation.PushAsync(new PositionPage());
         }
     }
 }
