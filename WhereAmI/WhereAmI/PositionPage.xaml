@@ -4,12 +4,18 @@
              x:Class="WhereAmI.PositionPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Latitude: "
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Latitude: "
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Label Text="Longitude: "
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                <Label x:Name="latitudeValue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Longitude: "
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+                <Label x:Name="logitudeValue" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
