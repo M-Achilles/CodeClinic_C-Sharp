@@ -14,5 +14,10 @@ namespace WhereAmI
         {
                 await Navigation.PushAsync(new PositionPage());
         }
+
+        async void WhereAmIOnMap(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new MapPage());
+        }
     }
 }

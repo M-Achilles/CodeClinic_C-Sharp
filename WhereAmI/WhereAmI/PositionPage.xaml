@@ -16,6 +16,8 @@
                     HorizontalOptions="CenterAndExpand" />
                 <Label x:Name="logitudeValue" />
             </StackLayout>
+            <Button Text="Open Map" x:Name="OpenMap"
+                Clicked="Clicked_OpenMap" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

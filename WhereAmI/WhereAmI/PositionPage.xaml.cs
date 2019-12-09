@@ -31,11 +31,18 @@ namespace WhereAmI
 
         }
 
+        private void Clicked_OpenMap(object sender, EventArgs e)
+        {
+            Location location = Task.Run(async () => await GetDeviceLocationAsync()).Result;
+
+            Map.OpenAsync(location);
+        }
+
         private async Task<Location> GetDeviceLocationAsync()
         {
             try
             {
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(0.5));
                 var location = await Geolocation.GetLocationAsync(request);
 
                 return location;

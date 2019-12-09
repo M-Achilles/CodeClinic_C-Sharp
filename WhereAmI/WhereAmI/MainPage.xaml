@@ -17,6 +17,10 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 Clicked="WhereAmI" />
+        <Button Text="Where Am I On Map?"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Clicked="WhereAmIOnMap" />
     </StackLayout>
 
 </ContentPage>
