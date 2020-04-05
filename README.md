@@ -28,5 +28,17 @@
     * ASP.&#8203;net
         * Show location of client not server
 
+# Project 3: Eight Queens
+## Task
+* Find an algorithm for the eight queens problem
+    * Place eight queens on a chessboard so that no queen can attack each other
+    * Show all 92 solutions
+* Design
+    * Modular not monolithic
+* For visual representation use a technologie of your choice
+    * UWP
+    * Xamarin.Forms
+    * ASP.&#8203;net
+
 
  
