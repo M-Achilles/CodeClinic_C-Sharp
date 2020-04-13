@@ -6,7 +6,10 @@ namespace Eight_Queens
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            EightQueens eightQueens = new EightQueens();
+            eightQueens.CalculateAllSolutions();
+
+            eightQueens.ShowSolutions();
         }
     }
 }
