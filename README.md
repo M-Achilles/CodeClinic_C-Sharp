@@ -34,11 +34,22 @@
     * Place eight queens on a chessboard so that no queen can attack each other
     * Show all 92 solutions
 * Design
-    * Modular not monolithic
-* For visual representation use a technologie of your choice
-    * UWP
-    * Xamarin.Forms
-    * ASP.&#8203;net
+    * General approach
+        * Modular not monolithic
+    * Overview
+        * 1D representation of a 8x8 board
+            * Array of eight fields (columns)
+            * Each field holds a integer number (number of row)
+        * Collision detection
+            * Column
+                * Each field holds just one number
+                * No possibility to have more than one queen in a column
+            * Row
+                * Each number in a field has to be unique over all fields
+            * Diagonal collision
+                * Check the vertical and horizontal differences between two queens
+                * Collision is detected if they are equal
+            
 
 
  
