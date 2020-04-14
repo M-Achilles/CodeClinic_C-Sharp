@@ -49,6 +49,14 @@
             * Diagonal collision
                 * Check the vertical and horizontal differences between two queens
                 * Collision is detected if they are equal
+
+# Project 4: Accessing peripherals
+## Task
+* Convert mouse movement into music pitches
+    * Instrument is silent until mouse button is held down
+    * Up and down movement changes the pitch
+    * Left and right movement changes the volumn
+    * Music stops when mouse button lifts again
             
 
 
