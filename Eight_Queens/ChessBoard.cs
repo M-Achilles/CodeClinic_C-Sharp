@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 
 namespace Eight_Queens
 {
@@ -20,7 +17,7 @@ namespace Eight_Queens
             // Check diagonal collision
             for (int i = 0; i < Board.Length; i++)
             {
-                //Iterate over all columns with a queen
+                // Iterate over all columns with a queen
                 if (Board[i] != 0)
                 {
                     if (Math.Abs(i-column) == Math.Abs(Board[i] - newQueen))

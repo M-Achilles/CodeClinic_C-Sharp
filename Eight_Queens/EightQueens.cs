@@ -84,7 +84,7 @@ namespace Eight_Queens
 
             for (int i = 0; i < newChessBoard.Board.Length; i++)
             {
-                //Max 1000 fails in a row allowed
+                // Max 1000 fails in a row allowed
                 while (newChessBoard.Board[i] == 0 && fails < 1000)
                 {
                     randomIndex = random.Next(availableNumbers.Count);
