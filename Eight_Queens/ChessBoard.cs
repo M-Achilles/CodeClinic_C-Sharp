@@ -17,12 +17,6 @@ namespace Eight_Queens
         /// <returns></returns>
         public bool CheckCollision(int newQueen, int column)
         {
-            // True: There is a queen in the same row
-            if (Board.Contains(newQueen))
-            {
-                return true;
-            }
-
             // Check diagonal collision
             for (int i = 0; i < Board.Length; i++)
             {

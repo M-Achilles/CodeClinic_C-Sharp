@@ -42,30 +42,29 @@ namespace Eight_Queens
 
                 newChessBoard = CalculateSolution(newChessBoard);
 
-                AddBoardToBoardList(newChessBoard);
+                //Check if board is completed
+                if (newChessBoard.Board[7] != 0)
+                {
+                    AddBoardToBoardList(newChessBoard);
+                }
+                
             }
         }
 
         private void AddBoardToBoardList(ChessBoard newChessBoard)
         {
             bool alreadyExisting = false;
-            if (chessBoards.Count == 0)
+
+            foreach (var chessBoard in chessBoards)
             {
-                chessBoards.Add(newChessBoard);
-            }
-            else
-            {
-                foreach (var chessBoard in chessBoards)
+                if (chessBoard.Board.SequenceEqual(newChessBoard.Board))
                 {
-                    if (chessBoard.Board.SequenceEqual(newChessBoard.Board))
-                    {
-                        alreadyExisting = true;
-                        break;
-                    }
+                    alreadyExisting = true;
+                    break;
                 }
             }
 
-            if (!alreadyExisting)
+            if (!alreadyExisting || chessBoards.Count == 0)
             {
                 chessBoards.Add(newChessBoard);
                 failsInARow = 0;
@@ -78,17 +77,27 @@ namespace Eight_Queens
 
         private ChessBoard CalculateSolution(ChessBoard newChessBoard)
         {
-            newChessBoard.Board[0] = random.Next(1, 8);
+            int fails = 0;
             int newNumber;
+            int randomIndex;
+            List<int> availableNumbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
 
-            for (int i = 1; i < newChessBoard.Board.Length; i++)
+            for (int i = 0; i < newChessBoard.Board.Length; i++)
             {
-                while (newChessBoard.Board[i] == 0)
+                //Max 1000 fails in a row allowed
+                while (newChessBoard.Board[i] == 0 && fails < 1000)
                 {
-                    newNumber = random.Next(1, 9);
+                    randomIndex = random.Next(availableNumbers.Count);
+                    newNumber = availableNumbers[randomIndex];
                     if (!newChessBoard.CheckCollision(newNumber, i))
                     {
                         newChessBoard.Board[i] = newNumber;
+                        availableNumbers.RemoveAt(randomIndex);
+                        fails = 0;
+                    }
+                    else
+                    {
+                        fails++;
                     }
                 }
             }

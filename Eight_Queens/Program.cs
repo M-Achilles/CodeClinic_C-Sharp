@@ -10,6 +10,8 @@ namespace Eight_Queens
             eightQueens.CalculateAllSolutions();
 
             eightQueens.ShowSolutions();
+
+            Console.ReadLine();
         }
     }
 }
