@@ -7,36 +7,38 @@
  * Input of barometric data from datasoure
     * Example textfile for first implementation
     * Later data from an API or something
-* Create a function that gets a start date, end date and the data passed in and returns cartesian coordinates
-* Create a function that calculates the slope of barometric pressure of the given timerange 
-* Plot the graph with a technologie of your choice
-    * UWP
-    * Xamarin.Forms
-    * ASP.&#8203;net
+* Overview
+    * Create a function that gets a start date, end date and the data passed in and returns cartesian coordinates
+    * Create a function that calculates the slope of barometric pressure of the given timerange 
+    * Plot the graph with a technologie of your choice
+        * UWP
+        * Xamarin.Forms
+        * ASP.&#8203;net
 
 # Project 2: Where Am I?
 ## Task
 * Find the geolocation of the machine, currently running your code
+* Overview
     * Show
         * Latitude
         * Longitude
         * Location on Map
         * Accuracy as circle (e.g.)
-* Use a technologie of your choice
-    * UWP
-    * Xamarin.Forms
-    * ASP.&#8203;net
-        * Show location of client not server
+    * Use a technologie of your choice
+        * UWP
+        * Xamarin.Forms
+        * ASP.&#8203;net
+            * Show location of client not server
 
 # Project 3: Eight Queens
 ## Task
 * Find an algorithm for the eight queens problem
     * Place eight queens on a chessboard so that no queen can attack each other
     * Show all 92 solutions
-* Design
+* Overview
     * General approach
         * Modular not monolithic
-    * Overview
+    * Design
         * 1D representation of a 8x8 board
             * Array of eight fields (columns)
             * Each field holds a integer number (number of row)
@@ -57,6 +59,14 @@
     * Up and down movement changes the pitch
     * Left and right movement changes the volumn
     * Music stops when mouse button lifts again
+* Overview
+    * Surface-Technology
+        * UWP-App
+            * Observe mouse clicks
+            * Observe mouse movement
+    * Generating Sound
+        * Use of nuget package NAudio v1.10
+            * SignalGenerator class as sine wave generator
             
 
 
